@@ -18,7 +18,6 @@ import FramesHandlerContainer from './FramesHandler';
 import PaletteGridContainer from './PaletteGrid';
 import ResetContainer from './Reset';
 import SaveDrawingContainer from './SaveDrawing';
-import NewProjectContainer from './NewProject';
 import SimpleNotificationContainer from './SimpleNotification';
 import SimpleSpinnerContainer from './SimpleSpinner';
 import CellsInfo from './CellsInfo';
@@ -100,25 +99,11 @@ export default class App extends React.Component {
                   >
                     <WalletButton />
                   </div>
-                  <div data-tooltip={helpOn ? 'New project' : null}>
-                    <NewProjectContainer />
-                  </div>
-                  <div className="app__load-save-container">
-                    <button
-                      type="button"
-                      className="app__load-button"
-                      onClick={() => {
-                        this.changeModalType('load');
-                      }}
-                      data-tooltip={
-                        helpOn ? 'Load projects you stored before' : null
-                      }
-                    >
-                      LOAD
-                    </button>
-                    <div data-tooltip={helpOn ? 'Save your project' : null}>
-                      <SaveDrawingContainer />
-                    </div>
+                  <div
+                    className="app__save-container"
+                    data-tooltip={helpOn ? 'Save your project' : null}
+                  >
+                    <SaveDrawingContainer />
                   </div>
                   <div
                     data-tooltip={helpOn ? 'Undo (CTRL+Z) Redo (CTRL+Y)' : null}

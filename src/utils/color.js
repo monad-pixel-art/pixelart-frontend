@@ -6,6 +6,25 @@ const expandHex = hexValue =>
     .map(char => `${char}${char}`)
     .join('');
 
+const clampComponent = value => {
+  const intValue = Number(value);
+  if (Number.isNaN(intValue)) {
+    return 0;
+  }
+  if (intValue < 0) {
+    return 0;
+  }
+  if (intValue > 255) {
+    return 255;
+  }
+  return Math.round(intValue);
+};
+
+const componentToHex = value =>
+  clampComponent(value)
+    .toString(16)
+    .padStart(2, '0');
+
 const parseHex = color => {
   const hex = color.slice(1);
   const normalizedHex =
@@ -61,3 +80,41 @@ const colorStringToRgbArray = colorValue => {
 };
 
 export default colorStringToRgbArray;
+
+export const rgbArrayToHexColor = colorValue => {
+  if (!Array.isArray(colorValue)) {
+    return '#000000';
+  }
+
+  const normalized = colorValue
+    .slice(0, 3)
+    .map(component => componentToHex(component));
+
+  if (normalized.length < 3) {
+    return '#000000';
+  }
+
+  return `#${normalized[0]}${normalized[1]}${normalized[2]}`;
+};
+
+export const rgbArrayToCanvasColor = colorValue => {
+  if (!Array.isArray(colorValue)) {
+    return '';
+  }
+
+  const normalized = colorValue
+    .slice(0, 3)
+    .map(component => clampComponent(component));
+
+  if (normalized.length < 3) {
+    return '';
+  }
+
+  const [red, green, blue] = normalized;
+
+  if (red === 0 && green === 0 && blue === 0) {
+    return '';
+  }
+
+  return rgbArrayToHexColor(normalized);
+};

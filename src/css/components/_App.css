@@ -18,19 +18,8 @@
     margin-left: -40%;
   }
 
-  .app__load-save-container {
+  .app__save-container {
     margin-bottom: 2em;
-
-    .app__load-button {
-      @mixin button gray;
-    }
-
-    lost-utility: clearfix;
-
-    > div,
-    > button {
-      lost-column: 1/2 0 0.5em;
-    }
   }
 
   .app__wallet {

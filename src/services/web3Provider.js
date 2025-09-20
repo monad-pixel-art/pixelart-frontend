@@ -1,6 +1,11 @@
 import Web3 from 'web3';
 
 let web3Instance = null;
+let readOnlyWeb3Instance = null;
+
+export const MONAD_TESTNET_RPC_URL =
+  process.env.REACT_APP_MONAD_TESTNET_RPC_URL ||
+  'https://testnet-rpc.monad.xyz/';
 
 const getWindow = () => (typeof window !== 'undefined' ? window : undefined);
 
@@ -32,6 +37,21 @@ export const getWeb3Instance = () => {
   }
 
   return web3Instance;
+};
+
+export const getReadOnlyWeb3Instance = () => {
+  if (readOnlyWeb3Instance) {
+    return readOnlyWeb3Instance;
+  }
+
+  const provider = getEthereumProvider();
+  if (provider) {
+    readOnlyWeb3Instance = new Web3(provider);
+    return readOnlyWeb3Instance;
+  }
+
+  readOnlyWeb3Instance = new Web3(MONAD_TESTNET_RPC_URL);
+  return readOnlyWeb3Instance;
 };
 
 export const connectWeb3 = async () => {

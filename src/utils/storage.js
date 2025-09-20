@@ -56,17 +56,17 @@ export function getDataFromStorage(storage) {
 export function saveProjectToStorage(storage, projectData) {
   try {
     let dataStored = getDataFromStorage(storage);
-    if (dataStored) {
-      dataStored.stored.push(projectData);
-      dataStored.current = dataStored.stored.length - 1;
-    } else {
+    if (!dataStored) {
       dataStored = {
-        stored: [projectData],
-        current: 0
+        stored: [],
+        current: -1
       };
     }
-    storage.setItem(STORAGE_KEY, JSON.stringify(dataStored));
-    return true;
+
+    dataStored.stored = [projectData];
+    dataStored.current = 0;
+
+    return saveDataToStorage(storage, dataStored);
   } catch (e) {
     return false; // There was an error
   }
