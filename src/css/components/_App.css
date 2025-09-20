@@ -33,6 +33,37 @@
     }
   }
 
+  .app__wallet {
+    margin-bottom: 1.5em;
+    text-align: center;
+
+    .app__wallet-button {
+      @mixin button darkblue;
+
+      width: 100%;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .app__wallet-network {
+      margin-top: 0.6em;
+      font-size: 0.85em;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: $color-silver;
+
+      .app__wallet-network-label {
+        margin-right: 0.4em;
+      }
+    }
+
+    .app__wallet-error {
+      margin-top: 0.6em;
+      font-size: 0.85em;
+      color: $color-tamarillo;
+    }
+  }
+
   .app__social-container {
     .app__download-button {
       @mixin button brown;

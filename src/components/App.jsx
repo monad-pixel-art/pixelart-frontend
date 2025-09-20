@@ -23,6 +23,7 @@ import SimpleNotificationContainer from './SimpleNotification';
 import SimpleSpinnerContainer from './SimpleSpinner';
 import CellsInfo from './CellsInfo';
 import UndoRedoContainer from './UndoRedo';
+import WalletButton from './WalletButton';
 import initialSetup from '../utils/startup';
 import drawHandlersProvider from '../utils/drawHandlersProvider';
 
@@ -93,6 +94,12 @@ export default class App extends React.Component {
             <div className="app__left-side">
               <div className="app__mobile--container max-width-container">
                 <div className="app__mobile--group">
+                  <div
+                    className="app__wallet-wrapper"
+                    data-tooltip={helpOn ? 'Connect an Ethereum wallet' : null}
+                  >
+                    <WalletButton />
+                  </div>
                   <div data-tooltip={helpOn ? 'New project' : null}>
                     <NewProjectContainer />
                   </div>
