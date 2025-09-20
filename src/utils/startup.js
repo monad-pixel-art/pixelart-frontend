@@ -45,14 +45,11 @@ const initialSetup = async (dispatch, storage) => {
 
   try {
     const pixels = await fetchPixels();
-    const hasPixels = pixels && Array.isArray(pixels.x) && pixels.x.length > 0;
+    const blockchainProject = buildProjectFromPixels(pixels, project);
 
-    if (hasPixels) {
-      const blockchainProject = buildProjectFromPixels(pixels, project);
-      if (blockchainProject) {
-        saveProjectToStorage(storage, blockchainProject);
-        project = blockchainProject;
-      }
+    if (blockchainProject) {
+      saveProjectToStorage(storage, blockchainProject);
+      project = blockchainProject;
     }
   } catch (error) {
     // eslint-disable-next-line no-console

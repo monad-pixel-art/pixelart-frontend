@@ -84,7 +84,7 @@ const buildProjectFromPixels = (pixels, baseProject = null) => {
   const yValues = pixels?.y || [];
   const colorValues = pixels?.colors || [];
 
-  if (!xValues.length || xValues.length !== yValues.length) {
+  if (xValues.length !== yValues.length) {
     return null;
   }
 
